@@ -2,6 +2,7 @@
 let coin = {
     state: 0,
     flip: function() {
+        //shortcut>>  this.state = Math.round(Math.random())
         if (Math.random() > .5) {
             this.state = 1;
         } else {
@@ -10,38 +11,49 @@ let coin = {
     },
 
     toString: function() {
-        let div = document.createElement('div')
-        document.body.appendChild(div)
+//shortcut>>>  return (this.state === 0) ? "Heads" : "Tails";
+        //let div = document.createElement('div')
+       // document.body.appendChild(div)
         if (this.state === 1) {
-            return div.append("Heads");
+            return "Heads";
         } else {
-            return div.append("Tails");
+            return "Tails";
         }
+        //return div
     },
-
     toHTML: function() {
         let image = document.createElement('img');
-        document.body.appendChild(image);
+       // document.body.appendChild(image);
         if (this.state === 1) {
-            image.src = "images/silverDollar_heads.jpg", width = 20, height = 20;
-            document.write("<br>");
+            image.src = "images/silverDollar_heads.jpg";
+            image.style.width = "100px";
+            image.style.height = "100px";      
+           // document.write("<br>");
         } else {
-            image.src = "images/silverDollar_tails.jpg", width = "100px", height = "100px";
-            document.write("<br>")
+            image.src = "images/silverDollar_tails.jpg";
+            image.style.width = "150px";
+            image.style.height = "100px";
+      
+           // document.write("<br>")
         }
+    return image
     },
 }
 function display20Flips() {
     for (let i = 0; i < 20; i++) {
         coin.flip();
-        coin.toString();
+        //console.log(coin.toString());
+let li = document.createElement('li'); 
+li.innerHTML = coin.toString(); 
+document.body.append(li);
+//document.body.append(coin.toString());
     }
 }
 
 function display20Images() {
     for (let i = 0; i < 20; i++) {
         coin.flip();
-        coin.toHTML();
+        document.body.append(coin.toHTML());
     }
 }
 display20Flips();
